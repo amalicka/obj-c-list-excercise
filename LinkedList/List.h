@@ -69,7 +69,7 @@
  * @returns the element at the specified location
  * @throws NSRangeException when location < 0 || locaiton > size()
  */
-- (id) getAtLocation:(NSUInteger) location;
+- (id) get:(NSUInteger) location;
 
 /**
  * Searches this List for the specified object and returns the index of the first occurrence.
@@ -83,7 +83,7 @@
  * @param object the object to search for
  * @returns the index of the last occurrence of the object, or -1 if the object was not found.
  */
-- (id) lastLocationOf:(id) object;
+- (NSUInteger) lastLocationOf:(id) object;
 
 /**
  * Returns whether this List contains no elements.
@@ -156,8 +156,6 @@
 // Equality checks, see: http://nshipster.com/equality/
 /** Returns true if other is a List containing same elements (by equals method of those elements) */
 - (BOOL) isEqual:(id) other;
-/** Returns true if other List contains same elements (by equals method of those elements) */
-- (BOOL) isEqualToList:(id<List>) otherList;
 /** Returns hash code of this List */
 - (NSUInteger) hash;
 

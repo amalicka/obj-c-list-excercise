@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		3B22E1C31ADFCD7300A87F34 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B22E1C21ADFCD7300A87F34 /* main.m */; };
+		3B22E1CF1AE052FD00A87F34 /* NSArrayList.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B22E1CE1AE052FD00A87F34 /* NSArrayList.m */; };
+		3B22E1EB1AE0623F00A87F34 /* ListTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B22E1EA1AE0623F00A87F34 /* ListTests.m */; };
+		3B22E1F21AE0718000A87F34 /* NSArrayList.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B22E1CE1AE052FD00A87F34 /* NSArrayList.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -26,10 +29,23 @@
 		3B22E1BF1ADFCD7300A87F34 /* List */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = List; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B22E1C21ADFCD7300A87F34 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3B22E1C91ADFCD8500A87F34 /* List.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = List.h; sourceTree = "<group>"; };
+		3B22E1CD1AE052FD00A87F34 /* NSArrayList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSArrayList.h; sourceTree = "<group>"; };
+		3B22E1CE1AE052FD00A87F34 /* NSArrayList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSArrayList.m; sourceTree = "<group>"; };
+		3B22E1E61AE0623F00A87F34 /* ListTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ListTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B22E1E91AE0623F00A87F34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3B22E1EA1AE0623F00A87F34 /* ListTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListTests.m; sourceTree = "<group>"; };
+		3B22E1F11AE06C1900A87F34 /* ListTestDef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListTestDef.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		3B22E1BC1ADFCD7300A87F34 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3B22E1E31AE0623F00A87F34 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -43,6 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				3B22E1C11ADFCD7300A87F34 /* List */,
+				3B22E1E71AE0623F00A87F34 /* ListTests */,
 				3B22E1C01ADFCD7300A87F34 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -51,6 +68,7 @@
 			isa = PBXGroup;
 			children = (
 				3B22E1BF1ADFCD7300A87F34 /* List */,
+				3B22E1E61AE0623F00A87F34 /* ListTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -60,9 +78,29 @@
 			children = (
 				3B22E1C21ADFCD7300A87F34 /* main.m */,
 				3B22E1C91ADFCD8500A87F34 /* List.h */,
+				3B22E1CD1AE052FD00A87F34 /* NSArrayList.h */,
+				3B22E1CE1AE052FD00A87F34 /* NSArrayList.m */,
 			);
 			name = List;
 			path = LinkedList;
+			sourceTree = "<group>";
+		};
+		3B22E1E71AE0623F00A87F34 /* ListTests */ = {
+			isa = PBXGroup;
+			children = (
+				3B22E1F11AE06C1900A87F34 /* ListTestDef.h */,
+				3B22E1EA1AE0623F00A87F34 /* ListTests.m */,
+				3B22E1E81AE0623F00A87F34 /* Supporting Files */,
+			);
+			path = ListTests;
+			sourceTree = "<group>";
+		};
+		3B22E1E81AE0623F00A87F34 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3B22E1E91AE0623F00A87F34 /* Info.plist */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -85,6 +123,23 @@
 			productReference = 3B22E1BF1ADFCD7300A87F34 /* List */;
 			productType = "com.apple.product-type.tool";
 		};
+		3B22E1E51AE0623F00A87F34 /* ListTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3B22E1EC1AE0623F00A87F34 /* Build configuration list for PBXNativeTarget "ListTests" */;
+			buildPhases = (
+				3B22E1E21AE0623F00A87F34 /* Sources */,
+				3B22E1E31AE0623F00A87F34 /* Frameworks */,
+				3B22E1E41AE0623F00A87F34 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ListTests;
+			productName = ListTests;
+			productReference = 3B22E1E61AE0623F00A87F34 /* ListTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -95,6 +150,9 @@
 				ORGANIZATIONNAME = "Jakub Skierbiszewski";
 				TargetAttributes = {
 					3B22E1BE1ADFCD7300A87F34 = {
+						CreatedOnToolsVersion = 6.3;
+					};
+					3B22E1E51AE0623F00A87F34 = {
 						CreatedOnToolsVersion = 6.3;
 					};
 				};
@@ -112,16 +170,37 @@
 			projectRoot = "";
 			targets = (
 				3B22E1BE1ADFCD7300A87F34 /* List */,
+				3B22E1E51AE0623F00A87F34 /* ListTests */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3B22E1E41AE0623F00A87F34 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3B22E1BB1ADFCD7300A87F34 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B22E1CF1AE052FD00A87F34 /* NSArrayList.m in Sources */,
 				3B22E1C31ADFCD7300A87F34 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3B22E1E21AE0623F00A87F34 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B22E1F21AE0718000A87F34 /* NSArrayList.m in Sources */,
+				3B22E1EB1AE0623F00A87F34 /* ListTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,6 +287,10 @@
 		3B22E1C71ADFCD7300A87F34 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
 				PRODUCT_NAME = List;
 			};
 			name = Debug;
@@ -215,7 +298,43 @@
 		3B22E1C81ADFCD7300A87F34 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
 				PRODUCT_NAME = List;
+			};
+			name = Release;
+		};
+		3B22E1ED1AE0623F00A87F34 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = ListTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		3B22E1EE1AE0623F00A87F34 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = ListTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -236,6 +355,15 @@
 			buildConfigurations = (
 				3B22E1C71ADFCD7300A87F34 /* Debug */,
 				3B22E1C81ADFCD7300A87F34 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3B22E1EC1AE0623F00A87F34 /* Build configuration list for PBXNativeTarget "ListTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3B22E1ED1AE0623F00A87F34 /* Debug */,
+				3B22E1EE1AE0623F00A87F34 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
