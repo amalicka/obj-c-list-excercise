@@ -34,7 +34,7 @@
  * @param objectList to be added to this list
  * @returns true if the List is modified, false otherwise (i.e. if the passed colleciton was empty)
  */
-- (BOOL) addAll:(List) objectList;
+- (BOOL) addAll:(id<List>) objectList;
 
 /**
  * Inserts the objects in the specified collection at the specified location in this List.
@@ -43,7 +43,7 @@
  * @param collection the collection of objects to be inserted.
  * @returns true if this List has been modified through the insertion, false otherwise (i.e. if the passed colleciton was empty)
  */
-- (BOOL) addALl:(List) objectList atLocation:(NSUInteger) location;
+- (BOOL) addALl:(id<List>) objectList atLocation:(NSUInteger) location;
 
 /**
  * Removes all elements from this List, leaving it empty.
@@ -61,7 +61,7 @@
  * @param objectList the collection of objects
  * @returns true if all objects in the specified collection are elements of this List, false otherwise.
  */
-- (BOOL) containsAll:(List) objectList;
+- (BOOL) containsAll:(id<List>) objectList;
 
 /**
  * Returns the element at the specified location in this List.
@@ -112,14 +112,14 @@
  * @param collection the collection of objects to remove.
  * @returns true if this List is modified, false otherwise.
  */
-- (BOOL) removeAll:(List) objectList;
+- (BOOL) removeAll:(id<List>) objectList;
 
 /**
  * Removes all objects from this List that are not contained in the specified collection.
  * @param collection the collection of objects to retain.
  * @returns true if this List is modified, false otherwise.
  */
-- (BOOL) retainAll:(List) objectList;
+- (BOOL) retainAll:(id<List>) objectList;
 
 /**
  * Replaces the element at the specified location in this List with the specified object.
@@ -146,18 +146,18 @@
  * @returns
  * @throws NSRangeException when location < 0 || locaiton > size()
  */
-- (List) subListFromLocation:(NSUInteger) startLocation toLocation:(NSUInteger) endLocation;
+- (id<List>) subListFromLocation:(NSUInteger) startLocation toLocation:(NSUInteger) endLocation;
 
 /**
  * Returns an array containing all elements contained in this List.
  */
-- (id[]) toArray;
+- (NSArray*) toArray;
 
 // Equality checks, see: http://nshipster.com/equality/
 /** Returns true if other is a List containing same elements (by equals method of those elements) */
 - (BOOL) isEqual:(id) other;
 /** Returns true if other List contains same elements (by equals method of those elements) */
-- (BOOL) isEqualToList:(List) otherList;
+- (BOOL) isEqualToList:(id<List>) otherList;
 /** Returns hash code of this List */
 - (NSUInteger) hash;
 

@@ -23,7 +23,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		3B22E1BF1ADFCD7300A87F34 /* LinkedList */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LinkedList; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B22E1BF1ADFCD7300A87F34 /* List */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = List; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B22E1C21ADFCD7300A87F34 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3B22E1C91ADFCD8500A87F34 /* List.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = List.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -42,7 +42,7 @@
 		3B22E1B61ADFCD7300A87F34 = {
 			isa = PBXGroup;
 			children = (
-				3B22E1C11ADFCD7300A87F34 /* LinkedList */,
+				3B22E1C11ADFCD7300A87F34 /* List */,
 				3B22E1C01ADFCD7300A87F34 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -50,26 +50,27 @@
 		3B22E1C01ADFCD7300A87F34 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3B22E1BF1ADFCD7300A87F34 /* LinkedList */,
+				3B22E1BF1ADFCD7300A87F34 /* List */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		3B22E1C11ADFCD7300A87F34 /* LinkedList */ = {
+		3B22E1C11ADFCD7300A87F34 /* List */ = {
 			isa = PBXGroup;
 			children = (
 				3B22E1C21ADFCD7300A87F34 /* main.m */,
 				3B22E1C91ADFCD8500A87F34 /* List.h */,
 			);
+			name = List;
 			path = LinkedList;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3B22E1BE1ADFCD7300A87F34 /* LinkedList */ = {
+		3B22E1BE1ADFCD7300A87F34 /* List */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3B22E1C61ADFCD7300A87F34 /* Build configuration list for PBXNativeTarget "LinkedList" */;
+			buildConfigurationList = 3B22E1C61ADFCD7300A87F34 /* Build configuration list for PBXNativeTarget "List" */;
 			buildPhases = (
 				3B22E1BB1ADFCD7300A87F34 /* Sources */,
 				3B22E1BC1ADFCD7300A87F34 /* Frameworks */,
@@ -79,9 +80,9 @@
 			);
 			dependencies = (
 			);
-			name = LinkedList;
+			name = List;
 			productName = LinkedList;
-			productReference = 3B22E1BF1ADFCD7300A87F34 /* LinkedList */;
+			productReference = 3B22E1BF1ADFCD7300A87F34 /* List */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -98,7 +99,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 3B22E1BA1ADFCD7300A87F34 /* Build configuration list for PBXProject "LinkedList" */;
+			buildConfigurationList = 3B22E1BA1ADFCD7300A87F34 /* Build configuration list for PBXProject "List" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -110,7 +111,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3B22E1BE1ADFCD7300A87F34 /* LinkedList */,
+				3B22E1BE1ADFCD7300A87F34 /* List */,
 			);
 		};
 /* End PBXProject section */
@@ -207,21 +208,21 @@
 		3B22E1C71ADFCD7300A87F34 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = List;
 			};
 			name = Debug;
 		};
 		3B22E1C81ADFCD7300A87F34 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = List;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3B22E1BA1ADFCD7300A87F34 /* Build configuration list for PBXProject "LinkedList" */ = {
+		3B22E1BA1ADFCD7300A87F34 /* Build configuration list for PBXProject "List" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3B22E1C41ADFCD7300A87F34 /* Debug */,
@@ -230,7 +231,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3B22E1C61ADFCD7300A87F34 /* Build configuration list for PBXNativeTarget "LinkedList" */ = {
+		3B22E1C61ADFCD7300A87F34 /* Build configuration list for PBXNativeTarget "List" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3B22E1C71ADFCD7300A87F34 /* Debug */,
