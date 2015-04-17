@@ -13,6 +13,7 @@
  * Adds object to the list.
  * @param object to add
  * @returns always true
+ * @throws NSInvalidArgumentException if object is nil
  */
 - (BOOL) add:(id)object;
 
@@ -25,6 +26,7 @@
  * @param object to add
  * @param location where object should be added
  * @throws NSRangeException when location < 0 || locaiton > size()
+ * @throws NSInvalidArgumentException if object is nil
  */
 - (void) add:(id)object atLocation:(NSUInteger)location;
 
@@ -33,6 +35,7 @@
  * The objects are added in the order in which they are returned from the collection's iterator.
  * @param objectList to be added to this list
  * @returns true if the List is modified, false otherwise (i.e. if the passed colleciton was empty)
+ * @throws NSInvalidArgumentException if objectList is nil
  */
 - (BOOL) addAll:(id<List>) objectList;
 
@@ -42,26 +45,21 @@
  * @param location the index at which to insert.
  * @param collection the collection of objects to be inserted.
  * @returns true if this List has been modified through the insertion, false otherwise (i.e. if the passed colleciton was empty)
+ * @throws NSInvalidArgumentException if objectList is nil
  */
-- (BOOL) addALl:(id<List>) objectList atLocation:(NSUInteger) location;
+- (BOOL) addAll:(id<List>) objectList atLocation:(NSUInteger) location;
 
 /**
- * Removes all elements from this List, leaving it empty.
+ * Returns the number of elements in this List.
+ * @returns the number of elements in this List.
  */
-- (void) clear;
+- (NSUInteger) size;
 
 /**
- * Tests whether this List contains the specified object.
- * @param object the object to search for
+ * Returns whether this List contains no elements.
+ * @returns true if this List has no elements, false otherwise.
  */
-- (BOOL) contains:(id) object;
-
-/**
- * Tests whether this List contains all objects contained by the specified collection.
- * @param objectList the collection of objects
- * @returns true if all objects in the specified collection are elements of this List, false otherwise.
- */
-- (BOOL) containsAll:(id<List>) objectList;
+- (BOOL) isEmpty;
 
 /**
  * Returns the element at the specified location in this List.
@@ -72,9 +70,36 @@
 - (id) get:(NSUInteger) location;
 
 /**
+ * Replaces the element at the specified location in this List with the specified object.
+ * This operation does not change the size of the List.
+ * @param location the index at which to put the specified object.
+ * @param object the object to insert.
+ * @returns the previous element at the index
+ * @throws NSRangeException when location < 0 || locaiton > size()
+ * @throws NSInvalidArgumentException if object is nil
+ */
+- (id) set:(id) object atLocation:(NSUInteger) location;
+
+/**
+ * Tests whether this List contains the specified object.
+ * @param object the object to search for
+ * @throws NSInvalidArgumentException if objectList is nil
+ */
+- (BOOL) contains:(id) object;
+
+/**
+ * Tests whether this List contains all objects contained by the specified collection.
+ * @param objectList the collection of objects
+ * @returns true if all objects in the specified collection are elements of this List, false otherwise.
+ * @throws NSInvalidArgumentException if objectList is nil
+ */
+- (BOOL) containsAll:(id<List>) objectList;
+
+/**
  * Searches this List for the specified object and returns the index of the first occurrence.
  * @param object the object to serarch for
- * @returns the location of the first occurence of the object or -1 if the object was not found
+ * @returns the location of the first occurence of the object or NSNotFound if the object was not found
+ * @throws NSInvalidArgumentException if object is nil
  */
 - (NSUInteger) locationOf:(id) object;
 
@@ -82,15 +107,22 @@
  * Searches this List for the specified object and returns the index of the last occurrence.
  * @param object the object to search for
  * @returns the index of the last occurrence of the object, or -1 if the object was not found.
+ * @throws NSInvalidArgumentException if object is nil
  */
 - (NSUInteger) lastLocationOf:(id) object;
 
 /**
- * Returns whether this List contains no elements.
- * @returns true if this List has no elements, false otherwise.
+ * Removes all elements from this List, leaving it empty.
  */
-- (BOOL) isEmpty;
+- (void) clear;
 
+/**
+ * Removes the first occurrence of the specified object from this List.
+ * @param object the object to remove
+ * @returns true if this List was modified by this operation, false otherwise.
+ * @throws NSInvalidArgumentException if object is nil
+ */
+- (BOOL) remove:(id) object;
 
 /**
  * Removes the object at the specified location from this List.
@@ -101,16 +133,10 @@
 - (id) removeAtLocation:(NSUInteger) location;
 
 /**
- * Removes the first occurrence of the specified object from this List.
- * @param object the object to remove
- * @returns true if this List was modified by this operation, false otherwise.
- */
-- (BOOL) remove:(id) object;
-
-/**
  * Removes all occurrences in this List of each object in the specified collection.
  * @param collection the collection of objects to remove.
  * @returns true if this List is modified, false otherwise.
+ * @throws NSInvalidArgumentException if objectList is nil
  */
 - (BOOL) removeAll:(id<List>) objectList;
 
@@ -118,24 +144,9 @@
  * Removes all objects from this List that are not contained in the specified collection.
  * @param collection the collection of objects to retain.
  * @returns true if this List is modified, false otherwise.
+ * @throws NSInvalidArgumentException if objectList is nil
  */
 - (BOOL) retainAll:(id<List>) objectList;
-
-/**
- * Replaces the element at the specified location in this List with the specified object.
- * This operation does not change the size of the List.
- * @param location the index at which to put the specified object.
- * @param object the object to insert.
- * @returns the previous element at the index
- * @throws NSRangeException when location < 0 || locaiton > size()
- */
-- (id) set:(id) object atLocation:(NSUInteger) location;
-
-/**
- * Returns the number of elements in this List.
- * @returns the number of elements in this List.
- */
-- (NSUInteger) size;
 
 /**
  * Returns a List of the specified portion of this List from the given start index to 

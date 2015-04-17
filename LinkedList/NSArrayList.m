@@ -25,51 +25,137 @@
 }
 
 - (void) add:(id)object atLocation:(NSUInteger)location {
+    if (location > [self size]) {
+        @throw [NSException
+                exceptionWithName:NSRangeException
+                reason:@"Cannot insert at location > size!!!"
+                userInfo: nil];
+    }
     
+    [_array insertObject:object atIndex:location];
 }
 
 - (BOOL) addAll:(id<List>) objectList {
-    return false;
-}
-
-- (BOOL) addALl:(id<List>) objectList atLocation:(NSUInteger) location {
-    return false;
-}
-
-- (void) clear {
+    if (objectList == nil) {
+        @throw [NSException
+                exceptionWithName:NSInvalidArgumentException
+                reason:@"Passed nil objectList!"
+                userInfo:nil];
+    }
     
+    if ([objectList isEmpty]) {
+        return false;
+    }
+    
+    [_array addObjectsFromArray:[objectList toArray]];
+    return true;
 }
 
-- (BOOL) contains:(id) object {
-    return false;
+- (BOOL) addAll:(id<List>) objectList atLocation:(NSUInteger) location {
+    if (objectList == nil) {
+        @throw [NSException
+                exceptionWithName:NSInvalidArgumentException
+                reason:@"Passed nil objectList!"
+                userInfo:nil];
+    }
+    
+    if (location > [self size]) {
+        @throw [NSException
+                exceptionWithName:NSRangeException
+                reason:@"Cannot insert at location > size!!!"
+                userInfo: nil];
+    }
+    
+    if ([objectList isEmpty]) {
+        return false;
+    }
+    
+    for (NSUInteger i = 0; i < [objectList size]; ++i) {
+        [self add:[objectList get:i] atLocation:location+i];
+    }
+    
+    return true;
 }
 
-- (BOOL) containsAll:(id<List>) objectList {
-    return false;
-}
-
-- (id) get:(NSUInteger) location {
-    return [_array objectAtIndex:location];
-}
-
-- (NSUInteger) locationOf:(id) object {
-    return 0;
-}
-
-- (NSUInteger) lastLocationOf:(id) object {
-    return 0;
+- (NSUInteger) size {
+    return _array.count;
 }
 
 - (BOOL) isEmpty {
     return _array.count == 0;
 }
 
-- (id) removeAtLocation:(NSUInteger) location {
+- (id) get:(NSUInteger) location {
+    return [_array objectAtIndex:location];
+}
+
+- (id) set:(id) object atLocation:(NSUInteger) location {
     return nil;
+}
+
+- (BOOL) contains:(id) object {
+    if (object == nil) {
+        @throw [NSException
+                exceptionWithName:NSInvalidArgumentException
+                reason:@"Passed nil object!"
+                userInfo:nil];
+    }
+    return [_array containsObject:object];
+}
+
+- (BOOL) containsAll:(id<List>) objectList {
+    if (objectList == nil) {
+        @throw [NSException
+                exceptionWithName:NSInvalidArgumentException
+                reason:@"Passed nil list!"
+                userInfo:nil];
+    }
+    
+    for (NSUInteger i = 0; i < [objectList size]; ++i) {
+        id obj = [objectList get:i];
+        if ([_array containsObject:obj] == NO) {
+            return false;
+        }
+    }
+    return true;
+}
+
+- (NSUInteger) locationOf:(id) object {
+    if (object == nil) {
+        @throw [NSException
+                exceptionWithName:NSInvalidArgumentException
+                reason:@"Passed nil object!"
+                userInfo:nil];
+    }
+    return [_array indexOfObject:object];
+}
+
+- (NSUInteger) lastLocationOf:(id) object {
+    if (object == nil) {
+        @throw [NSException
+                exceptionWithName:NSInvalidArgumentException
+                reason:@"Passed nil object!"
+                userInfo:nil];
+    }
+    NSUInteger location = NSNotFound;
+    for (NSUInteger i = 0; i < _array.count; ++i) {
+        if ([[_array objectAtIndex:i] isEqual:object]) {
+            location = i;
+        }
+    }
+    return location;
+}
+
+- (void) clear {
+    [_array removeAllObjects];
 }
 
 - (BOOL) remove:(id) object {
     return false;
+}
+
+- (id) removeAtLocation:(NSUInteger) location {
+    return nil;
 }
 
 - (BOOL) removeAll:(id<List>) objectList {
@@ -78,14 +164,6 @@
 
 - (BOOL) retainAll:(id<List>) objectList {
     return false;
-}
-
-- (id) set:(id) object atLocation:(NSUInteger) location {
-    return nil;
-}
-
-- (NSUInteger) size {
-    return _array.count;
 }
 
 - (id<List>) subListFromLocation:(NSUInteger) startLocation toLocation:(NSUInteger) endLocation {
