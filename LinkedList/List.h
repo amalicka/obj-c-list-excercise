@@ -46,6 +46,7 @@
  * @param collection the collection of objects to be inserted.
  * @returns true if this List has been modified through the insertion, false otherwise (i.e. if the passed colleciton was empty)
  * @throws NSInvalidArgumentException if objectList is nil
+ * @throws NSRangeException when location > size()
  */
 - (BOOL) addAll:(id<List>) objectList atLocation:(NSUInteger) location;
 

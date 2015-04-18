@@ -386,4 +386,53 @@
     XCTAssertTrue([_list isEmpty]);
 }
 
+- (void) testRemoveAll {
+    XCTAssertThrowsSpecificNamed([_list removeAll:nil], NSException, NSInvalidArgumentException);
+    id<List> emptyList = [[ListImpl alloc] init];
+    XCTAssertFalse([_list removeAll:emptyList]);
+    
+    id<List> otherList = [[ListImpl alloc] init];
+    [otherList add:@"Other object"];
+    [otherList add:@"another other object"];
+    XCTAssertFalse([_list removeAll:emptyList]);
+    
+    [_list add:_str0];
+    [_list add:_str0];
+    [_list add:_str0];
+    [_list add:_str1];
+    [_list add:_str1];
+    XCTAssertFalse([_list removeAll:otherList], @"No objects should be removed");
+    XCTAssertEqual(5, [_list size], @"No objects were removed");
+    
+    id<List> smallList = [[ListImpl alloc] init];
+    [smallList add:_str0];
+    [smallList add:_str0];
+    XCTAssertTrue([_list removeAll:smallList]);
+    XCTAssertEqual(2, [_list size]);
+    XCTAssertEqualObjects(_str1, [_list get:0]);
+    XCTAssertEqualObjects(_str1, [_list get:1]);
+    
+    id<List> bigList = [[ListImpl alloc] init];
+    [bigList add:_str1];
+    [bigList add:_str1];
+    [bigList add:_str2];
+    [bigList add:_str2];
+    [bigList add:_str2];
+    XCTAssertTrue([_list removeAll:bigList]);
+    XCTAssertEqual(0, [_list size]);
+    XCTAssertTrue([_list isEmpty]);
+    
+    [_list add:_str0];
+    [_list add:_str1];
+    [_list add:_str2];
+    [_list add:_str2];
+    [_list add:_str1];
+    [_list add:_str0];
+    [_list add:_str1];
+    XCTAssertTrue([_list removeAll:bigList]);
+    XCTAssertEqual(2, [_list size]);
+    XCTAssertEqualObjects(_str0, [_list get:0]);
+    XCTAssertEqualObjects(_str0, [_list get:1]);
+}
+
 @end

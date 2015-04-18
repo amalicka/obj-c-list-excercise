@@ -182,7 +182,16 @@
 }
 
 - (BOOL) removeAll:(id<List>) objectList {
-    return false;
+    if (objectList == nil) {
+        @throw [NSException
+                exceptionWithName:NSInvalidArgumentException
+                reason:@"Passed nil objectList!"
+                userInfo:nil];
+    }
+    
+    NSUInteger prevSize = _array.count;
+    [_array removeObjectsInArray:[objectList toArray]];
+    return prevSize != _array.count;
 }
 
 - (BOOL) retainAll:(id<List>) objectList {
