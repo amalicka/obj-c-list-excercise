@@ -529,4 +529,24 @@
     XCTAssertTrue([same isEqual:_list]);
 }
 
+- (void) testToArray {
+    NSArray *empty = [[NSArray alloc] init];
+    XCTAssertEqualObjects(empty, [_list toArray]);
+    
+    [_list add:_str0];
+    NSArray *oneElement = [[NSArray alloc] initWithObjects:_str0, nil];
+    XCTAssertEqualObjects(oneElement, [_list toArray]);
+    
+    [_list add:_str2];
+    [_list add:_str0];
+    [_list add:_str1];
+    NSArray *multielem = [[NSArray alloc] initWithObjects:_str0, _str2, _str0, _str1, nil];
+    XCTAssertEqualObjects(multielem, [_list toArray]);
+    
+    [_list remove:_str2];
+    [_list removeAtLocation:1];
+    NSArray *afterDelete = [[NSArray alloc] initWithObjects:_str0, _str1, nil];
+    XCTAssertEqualObjects(afterDelete, [_list toArray]);
+}
+
 @end
