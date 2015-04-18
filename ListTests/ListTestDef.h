@@ -9,8 +9,9 @@
 #ifndef List_ListTestDef_h
 #define List_ListTestDef_h
 
-#import "NSArrayList.h"
+#import "List.h";
+// #import "ListImplementation.h"
 
-typedef NSArrayList ListImpl;
+typedef ListImplementationClass ListImpl;
 
 #endif

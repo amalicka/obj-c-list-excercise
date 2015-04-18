@@ -8,9 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3B22E1C31ADFCD7300A87F34 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B22E1C21ADFCD7300A87F34 /* main.m */; };
-		3B22E1CF1AE052FD00A87F34 /* NSArrayList.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B22E1CE1AE052FD00A87F34 /* NSArrayList.m */; };
 		3B22E1EB1AE0623F00A87F34 /* ListTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B22E1EA1AE0623F00A87F34 /* ListTests.m */; };
-		3B22E1F21AE0718000A87F34 /* NSArrayList.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B22E1CE1AE052FD00A87F34 /* NSArrayList.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,8 +27,6 @@
 		3B22E1BF1ADFCD7300A87F34 /* List */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = List; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B22E1C21ADFCD7300A87F34 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3B22E1C91ADFCD8500A87F34 /* List.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = List.h; sourceTree = "<group>"; };
-		3B22E1CD1AE052FD00A87F34 /* NSArrayList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSArrayList.h; sourceTree = "<group>"; };
-		3B22E1CE1AE052FD00A87F34 /* NSArrayList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSArrayList.m; sourceTree = "<group>"; };
 		3B22E1E61AE0623F00A87F34 /* ListTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ListTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B22E1E91AE0623F00A87F34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B22E1EA1AE0623F00A87F34 /* ListTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListTests.m; sourceTree = "<group>"; };
@@ -78,8 +74,6 @@
 			children = (
 				3B22E1C21ADFCD7300A87F34 /* main.m */,
 				3B22E1C91ADFCD8500A87F34 /* List.h */,
-				3B22E1CD1AE052FD00A87F34 /* NSArrayList.h */,
-				3B22E1CE1AE052FD00A87F34 /* NSArrayList.m */,
 			);
 			name = List;
 			path = LinkedList;
@@ -190,7 +184,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B22E1CF1AE052FD00A87F34 /* NSArrayList.m in Sources */,
 				3B22E1C31ADFCD7300A87F34 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -199,7 +192,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B22E1F21AE0718000A87F34 /* NSArrayList.m in Sources */,
 				3B22E1EB1AE0623F00A87F34 /* ListTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -366,6 +358,7 @@
 				3B22E1EE1AE0623F00A87F34 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
