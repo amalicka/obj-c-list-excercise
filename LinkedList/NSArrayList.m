@@ -90,7 +90,23 @@
 }
 
 - (id) set:(id) object atLocation:(NSUInteger) location {
-    return nil;
+    if (object == nil) {
+        @throw [NSException
+                exceptionWithName:NSInvalidArgumentException
+                reason:@"Passed nil object!"
+                userInfo:nil];
+    }
+    
+    if (location > [self size]) {
+        @throw [NSException
+                exceptionWithName:NSRangeException
+                reason:@"Cannot insert at location > size!!!"
+                userInfo: nil];
+    }
+    
+    id oldObject = [_array objectAtIndex:location];
+    [_array replaceObjectAtIndex:location withObject:object];
+    return oldObject;
 }
 
 - (BOOL) contains:(id) object {

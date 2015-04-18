@@ -575,4 +575,31 @@
     XCTAssertNotEqual([_list hash], [diffList hash], @"Lists with different elements return different hash");
 }
 
+- (void) testSetAtLocation {
+    XCTAssertThrowsSpecificNamed([_list set:nil atLocation:0], NSException, NSInvalidArgumentException);
+    XCTAssertEqual(0, [_list size], @"Size not changed by set");
+    XCTAssertThrowsSpecificNamed([_list set:_str0 atLocation:0], NSException, NSRangeException);
+    XCTAssertEqual(0, [_list size], @"Size not changed by set");
+    [_list add:_str2];
+    XCTAssertEqualObjects(_str2, [_list set:_str1 atLocation:0], @"Returned old element");
+    XCTAssertEqualObjects(_str1, [_list get:0], @"New element was inserted");
+    XCTAssertEqual(1, [_list size], @"Size not changed by set");
+
+    [_list add:_str1];
+    [_list add:_str0];
+    [_list add:_str0];
+    
+    XCTAssertEqualObjects(_str0, [_list set:_str1 atLocation:2], @"Returned old element");
+    XCTAssertEqual(4, [_list size], @"Size not changed by set");
+    XCTAssertEqualObjects(_str0, [_list set:_str1 atLocation:3], @"Returned old element");
+    XCTAssertEqual(4, [_list size], @"Size not changed by set");
+    XCTAssertThrowsSpecificNamed([_list set:_str1 atLocation:4], NSException, NSRangeException);
+    XCTAssertEqual(4, [_list size], @"Size not changed by set");
+    
+    XCTAssertEqualObjects(_str1, [_list get:0]);
+    XCTAssertEqualObjects(_str1, [_list get:1]);
+    XCTAssertEqualObjects(_str1, [_list get:2]);
+    XCTAssertEqualObjects(_str1, [_list get:3]);
+}
+
 @end
