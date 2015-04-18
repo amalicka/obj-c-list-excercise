@@ -496,4 +496,37 @@
     XCTAssertEqualObjects(_str1, [_list get:6]);
 }
 
+- (void) testIsEqual {
+    [_list add:_str0];
+    [_list add:_str0];
+    [_list add:_str2];
+    
+    id<List> empty = [[ListImpl alloc] init];
+    id<List> secondEmpty = [[ListImpl alloc] init];
+    XCTAssertTrue([empty isEqual: secondEmpty]);
+    XCTAssertFalse([empty isEqual:nil]);
+    XCTAssertFalse([_list isEqual:empty]);
+    XCTAssertFalse([empty isEqual:_list]);
+    
+    id<List> notSame = [[ListImpl alloc] init];
+    [notSame add:_str1];
+    [notSame add:_str0];
+    XCTAssertFalse([_list isEqual:notSame]);
+    XCTAssertFalse([notSame isEqual:_list]);
+    
+    id<List> orderChanged = [[ListImpl alloc] init];
+    [orderChanged add:_str0];
+    [orderChanged add:_str2];
+    [orderChanged add:_str0];
+    XCTAssertFalse([_list isEqual:orderChanged]);
+    XCTAssertFalse([orderChanged isEqual:_list]);
+    
+    id<List> same = [[ListImpl alloc] init];
+    [same add:_str0];
+    [same add:_str0];
+    [same add:_str2];
+    XCTAssertTrue([_list isEqual:same]);
+    XCTAssertTrue([same isEqual:_list]);
+}
+
 @end

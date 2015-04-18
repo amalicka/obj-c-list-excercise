@@ -233,7 +233,7 @@
 }
 
 - (BOOL) isEqualToArrayList:(id<List>) otherList {
-    return [_array isEqual:otherList];
+    return [_array isEqual:[otherList toArray]];
 }
 - (NSUInteger) hash {
     return [_array hash];
