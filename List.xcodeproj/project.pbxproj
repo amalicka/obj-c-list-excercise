@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3B22E1C31ADFCD7300A87F34 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B22E1C21ADFCD7300A87F34 /* main.m */; };
 		3B22E1EB1AE0623F00A87F34 /* ListTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B22E1EA1AE0623F00A87F34 /* ListTests.m */; };
+		3BF6305A1AE2CD2C00606E71 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF630591AE2CD2C00606E71 /* main.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,12 +25,13 @@
 
 /* Begin PBXFileReference section */
 		3B22E1BF1ADFCD7300A87F34 /* List */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = List; sourceTree = BUILT_PRODUCTS_DIR; };
-		3B22E1C21ADFCD7300A87F34 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		3B22E1C91ADFCD8500A87F34 /* List.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = List.h; sourceTree = "<group>"; };
 		3B22E1E61AE0623F00A87F34 /* ListTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ListTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B22E1E91AE0623F00A87F34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B22E1EA1AE0623F00A87F34 /* ListTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListTests.m; sourceTree = "<group>"; };
 		3B22E1F11AE06C1900A87F34 /* ListTestDef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListTestDef.h; sourceTree = "<group>"; };
+		3BF630581AE2CD2C00606E71 /* List.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = List.h; path = List/List.h; sourceTree = SOURCE_ROOT; };
+		3BF630591AE2CD2C00606E71 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = List/main.m; sourceTree = SOURCE_ROOT; };
+		3BF6305B1AE2CD3F00606E71 /* LinkedNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LinkedNode.h; path = List/LinkedNode.h; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,8 +73,9 @@
 		3B22E1C11ADFCD7300A87F34 /* List */ = {
 			isa = PBXGroup;
 			children = (
-				3B22E1C21ADFCD7300A87F34 /* main.m */,
-				3B22E1C91ADFCD8500A87F34 /* List.h */,
+				3BF630581AE2CD2C00606E71 /* List.h */,
+				3BF630591AE2CD2C00606E71 /* main.m */,
+				3BF6305B1AE2CD3F00606E71 /* LinkedNode.h */,
 			);
 			name = List;
 			path = LinkedList;
@@ -184,7 +186,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B22E1C31ADFCD7300A87F34 /* main.m in Sources */,
+				3BF6305A1AE2CD2C00606E71 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
