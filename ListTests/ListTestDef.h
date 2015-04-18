@@ -9,9 +9,10 @@
 #ifndef List_ListTestDef_h
 #define List_ListTestDef_h
 
+#import "ASList.h"
 #import "List.h";
 // #import "ListImplementation.h"
 
-typedef ListImplementationClass ListImpl;
+typedef ASList ListImpl;
 
 #endif
