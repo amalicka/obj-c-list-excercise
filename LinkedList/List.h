@@ -25,7 +25,7 @@
  * the specified location are moved by one position towards the end of the List.
  * @param object to add
  * @param location where object should be added
- * @throws NSRangeException when location < 0 || locaiton > size()
+ * @throws NSRangeException when locaiton > size()
  * @throws NSInvalidArgumentException if object is nil
  */
 - (void) add:(id)object atLocation:(NSUInteger)location;
@@ -65,7 +65,7 @@
  * Returns the element at the specified location in this List.
  * @param location the index of the element to return
  * @returns the element at the specified location
- * @throws NSRangeException when location < 0 || locaiton > size()
+ * @throws NSRangeException when locaiton >= size()
  */
 - (id) get:(NSUInteger) location;
 
@@ -75,7 +75,7 @@
  * @param location the index at which to put the specified object.
  * @param object the object to insert.
  * @returns the previous element at the index
- * @throws NSRangeException when location < 0 || locaiton > size()
+ * @throws NSRangeException when locaiton >= size()
  * @throws NSInvalidArgumentException if object is nil
  */
 - (id) set:(id) object atLocation:(NSUInteger) location;
@@ -128,7 +128,7 @@
  * Removes the object at the specified location from this List.
  * @param location the index of the object to remove.
  * @returns the removed object.
- * @throws NSRangeException when location < 0 || locaiton > size()
+ * @throws NSRangeException when locaiton >= size()
  */
 - (id) removeAtLocation:(NSUInteger) location;
 
@@ -155,7 +155,7 @@
  * @param startLocation the index at which to start the sublist.
  * @param endLocation the index one past the end of the sublist.
  * @returns
- * @throws NSRangeException when location < 0 || locaiton > size()
+ * @throws NSRangeException when startLocation >= size() or endLocation >= size()
  */
 - (id<List>) subListFromLocation:(NSUInteger) startLocation toLocation:(NSUInteger) endLocation;
 

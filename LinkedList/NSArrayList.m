@@ -169,7 +169,16 @@
 }
 
 - (id) removeAtLocation:(NSUInteger) location {
-    return nil;
+    if (location > [self size]) {
+        @throw [NSException
+                exceptionWithName:NSRangeException
+                reason:@"Cannot insert at location > size!!!"
+                userInfo: nil];
+    }
+    
+    id removed = [_array objectAtIndex:location];
+    [_array removeObjectAtIndex:location];
+    return removed;
 }
 
 - (BOOL) removeAll:(id<List>) objectList {

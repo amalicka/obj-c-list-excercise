@@ -74,7 +74,7 @@
     [_list add:_str0];
     [_list add:_str1];
     [_list add:_str2];
-    XCTAssertThrowsSpecificNamed([_list get:4], NSException, NSRangeException);
+    XCTAssertThrowsSpecificNamed([_list get:3], NSException, NSRangeException);
 }
 
 - (void) testIsEmpty {
@@ -354,6 +354,34 @@
     XCTAssertEqualObjects(_str1, [_list get:0]);
     
     XCTAssertTrue([_list remove:_str1]);
+    XCTAssertEqual(0, [_list size]);
+    XCTAssertTrue([_list isEmpty]);
+}
+
+- (void) testRemoveAtLocation {
+    XCTAssertThrowsSpecificNamed([_list removeAtLocation:0], NSException, NSRangeException);
+    [_list add:_str2];
+    [_list add:_str2];
+    [_list add:_str0];
+    [_list add:_str1];
+    XCTAssertThrowsSpecificNamed([_list removeAtLocation:4], NSException, NSRangeException);
+    
+    XCTAssertEqualObjects(_str0, [_list removeAtLocation:2]);
+    XCTAssertEqual(3, [_list size]);
+    XCTAssertEqualObjects(_str2, [_list get:0]);
+    XCTAssertEqualObjects(_str2, [_list get:1]);
+    XCTAssertEqualObjects(_str1, [_list get:2]);
+    
+    XCTAssertEqualObjects(_str2, [_list removeAtLocation:0]);
+    XCTAssertEqual(2, [_list size]);
+    XCTAssertEqualObjects(_str2, [_list get:0]);
+    XCTAssertEqualObjects(_str1, [_list get:1]);
+    
+    XCTAssertEqualObjects(_str1, [_list removeAtLocation:1]);
+    XCTAssertEqual(1, [_list size]);
+    XCTAssertEqualObjects(_str2, [_list get:0]);
+    
+    XCTAssertEqualObjects(_str2, [_list removeAtLocation:0]);
     XCTAssertEqual(0, [_list size]);
     XCTAssertTrue([_list isEmpty]);
 }
