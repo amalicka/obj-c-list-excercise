@@ -151,6 +151,20 @@
 }
 
 - (BOOL) remove:(id) object {
+    if (object == nil) {
+        @throw [NSException
+                exceptionWithName:NSInvalidArgumentException
+                reason:@"Passed nil object!"
+                userInfo:nil];
+    }
+    
+    for (NSUInteger i = 0; i < _array.count; ++i) {
+        if ([[_array objectAtIndex:i] isEqual: object]) {
+            [_array removeObjectAtIndex:i];
+            return true;
+        }
+    }
+    
     return false;
 }
 

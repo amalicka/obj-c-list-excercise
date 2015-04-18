@@ -318,7 +318,44 @@
 }
 
 - (void) testRemove {
-    // TODO
+    XCTAssertThrowsSpecificNamed([_list remove:nil], NSException, NSInvalidArgumentException);
+    XCTAssertFalse([_list remove:_str0]);
+    [_list add:_str0];
+    [_list add:_str1];
+    [_list add:_str2];
+    [_list add:_str1];
+    [_list add:_str0];
+    XCTAssertThrowsSpecificNamed([_list remove:nil], NSException, NSInvalidArgumentException);
+    XCTAssertFalse([_list remove:@"Other"]);
+    XCTAssertEqual(5, [_list size]);
+    
+    // Test remove object, same instance
+    XCTAssertTrue([_list remove:_str0]);
+    XCTAssertEqual(4, [_list size]);
+    XCTAssertEqualObjects(_str1, [_list get:0]);
+    XCTAssertEqualObjects(_str2, [_list get:1]);
+    XCTAssertEqualObjects(_str1, [_list get:2]);
+    XCTAssertEqualObjects(_str0, [_list get:3]);
+    
+    // Remove using copy of object (isEqual true, but no the same instance)
+    XCTAssertTrue([_list remove:[[NSString alloc] initWithString:_str2]]);
+    XCTAssertEqual(3, [_list size]);
+    XCTAssertEqualObjects(_str1, [_list get:0]);
+    XCTAssertEqualObjects(_str1, [_list get:1]);
+    XCTAssertEqualObjects(_str0, [_list get:2]);
+    
+    XCTAssertTrue([_list remove:_str1]);
+    XCTAssertEqual(2, [_list size]);
+    XCTAssertEqualObjects(_str1, [_list get:0]);
+    XCTAssertEqualObjects(_str0, [_list get:1]);
+    
+    XCTAssertTrue([_list remove:_str0]);
+    XCTAssertEqual(1, [_list size]);
+    XCTAssertEqualObjects(_str1, [_list get:0]);
+    
+    XCTAssertTrue([_list remove:_str1]);
+    XCTAssertEqual(0, [_list size]);
+    XCTAssertTrue([_list isEmpty]);
 }
 
 @end
