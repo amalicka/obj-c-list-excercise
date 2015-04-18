@@ -235,7 +235,14 @@
 - (BOOL) isEqualToArrayList:(id<List>) otherList {
     return [_array isEqual:[otherList toArray]];
 }
+
 - (NSUInteger) hash {
-    return [_array hash];
+    NSUInteger prime = 31;
+    NSUInteger result = 1;
+    for (NSUInteger i = 0; i < _array.count; ++i) {
+        result = prime * result + [[_array objectAtIndex:i] hash];
+    }
+    
+    return result;
 }
 @end

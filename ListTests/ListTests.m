@@ -549,4 +549,30 @@
     XCTAssertEqualObjects(afterDelete, [_list toArray]);
 }
 
+- (void) testHash {
+    id<List> equalList = [[ListImpl alloc] init];
+    XCTAssertEqual([_list hash], [equalList hash], @"Empty lists return same hash");
+    
+    [_list add:_str1];
+    [_list add:_str1];
+    [_list add:_str0];
+    [_list add:_str2];
+    [_list add:_str2];
+    
+    [equalList add:_str1];
+    [equalList add:_str1];
+    [equalList add:_str0];
+    [equalList add:_str2];
+    [equalList add:_str2];
+    XCTAssertEqual([_list hash], [equalList hash], @"Lists with same elements return same hash");
+    
+    id<List> diffList = [[ListImpl alloc] init];
+    [diffList add:_str1];
+    [diffList add:_str1];
+    [diffList add:_str1];
+    [diffList add:_str2];
+    [diffList add:_str2];
+    XCTAssertNotEqual([_list hash], [diffList hash], @"Lists with different elements return different hash");
+}
+
 @end

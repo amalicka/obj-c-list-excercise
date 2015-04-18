@@ -165,10 +165,16 @@
  */
 - (NSArray*) toArray;
 
-// Equality checks, see: http://nshipster.com/equality/
-/** Returns true if other is a List containing same elements (by equals method of those elements) */
+/**
+ * Returns true if other is a List containing same elements (by equals method of those elements) 
+ * @see http://nshipster.com/equality/
+ */
 - (BOOL) isEqual:(id) other;
-/** Returns hash code of this List */
+
+/** 
+ * Returns hash code of this List
+ * @see http://stackoverflow.com/questions/254281/best-practices-for-overriding-isequal-and-hash
+ */
 - (NSUInteger) hash;
 
 @end
