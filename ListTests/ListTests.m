@@ -602,4 +602,38 @@
     XCTAssertEqualObjects(_str1, [_list get:3]);
 }
 
+- (void) testSubList {
+    XCTAssertThrowsSpecificNamed([_list subListFromLocation:0 toLocation:0], NSException, NSRangeException);
+    [_list add:_str0];
+    XCTAssertThrowsSpecificNamed([_list subListFromLocation:1 toLocation:1], NSException, NSRangeException);
+    XCTAssertThrowsSpecificNamed([_list subListFromLocation:1 toLocation:0], NSException, NSRangeException);
+    
+    id<List> returned = [_list subListFromLocation:0 toLocation:1];
+    XCTAssertEqual(1, [returned size]);
+    XCTAssertEqual(_str0, [returned get:0]);
+    
+    [_list add:_str2];
+    [_list add:_str0];
+    [_list add:_str1];
+    [_list add:_str1];
+    [_list add:_str0];
+    [_list add:_str2];
+    
+    XCTAssertThrowsSpecificNamed([_list subListFromLocation:7 toLocation:0], NSException, NSRangeException);
+    XCTAssertThrowsSpecificNamed([_list subListFromLocation:0 toLocation:8], NSException, NSRangeException);
+    XCTAssertThrowsSpecificNamed([_list subListFromLocation:7 toLocation:8], NSException, NSRangeException);
+    
+    returned = [_list subListFromLocation:0 toLocation:7];
+    XCTAssertEqualObjects(returned, _list);
+    
+    returned = [_list subListFromLocation:6 toLocation:7];
+    XCTAssertEqual(1, [returned size]);
+    XCTAssertEqualObjects(_str2, [returned get:0]);
+    
+    returned = [_list subListFromLocation:4 toLocation:6];
+    XCTAssertEqual(2, [returned size]);
+    XCTAssertEqual(_str1, [returned get:0]);
+    XCTAssertEqual(_str0, [returned get:1]);
+}
+
 @end

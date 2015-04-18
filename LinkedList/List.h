@@ -156,7 +156,7 @@
  * @param startLocation the index at which to start the sublist.
  * @param endLocation the index one past the end of the sublist.
  * @returns
- * @throws NSRangeException when startLocation >= size() or endLocation >= size()
+ * @throws NSRangeException when startLocation >= size() or endLocation > size()
  */
 - (id<List>) subListFromLocation:(NSUInteger) startLocation toLocation:(NSUInteger) endLocation;
 

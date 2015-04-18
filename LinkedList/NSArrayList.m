@@ -228,7 +228,18 @@
 }
 
 - (id<List>) subListFromLocation:(NSUInteger) startLocation toLocation:(NSUInteger) endLocation {
-    return nil;
+    if (startLocation >= _array.count || endLocation > _array.count) {
+        @throw [NSException
+                exceptionWithName:NSRangeException
+                reason:@"Location out of range!"
+                userInfo: nil];
+    }
+    
+    id<List> sublist = [[NSArrayList alloc] init];
+    for (NSUInteger i = startLocation; i < endLocation; ++i) {
+        [sublist add:[self get:i]];
+    }
+    return sublist;
 }
 
 - (NSArray*) toArray {
