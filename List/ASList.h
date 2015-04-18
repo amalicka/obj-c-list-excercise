@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "List.h"
 
-@interface ASList : NSObject
+@interface ASList : NSObject <List>
 
 @end
