@@ -1,5 +1,5 @@
 //
-//  ASList.h
+//  LinkedNode.m
 //  List
 //
 //  Created by Ola Skierbiszewska on 18/04/15.
@@ -7,10 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "List.h"
 #import "LinkedNode.h"
 
-@interface ASList : NSObject <List>
-@property (nonatomic, strong) LinkedNode *currentNode;
+@implementation LinkedNode
 
 @end

@@ -7,11 +7,30 @@
 //
 
 #import "ASList.h"
+#import "LinkedNode.h"
 
 @implementation ASList
 
 - (BOOL) add:(id)object{
-    return true;
+    LinkedNode *nodeToAdd = [[LinkedNode alloc]init];
+    nodeToAdd.object = object;
+    if(object==nil){
+        @throw [NSException exceptionWithName:NSInvalidArgumentException
+                                       reason:@"Added object is nil"
+                                     userInfo:nil];
+    }
+    else if(self.currentNode.object == nil){
+        nodeToAdd.prev = nil;
+        nodeToAdd.next = nil;
+        self.currentNode = nodeToAdd;
+        return  true;
+    }
+    else{
+        nodeToAdd.prev = self.currentNode;
+        nodeToAdd.next = nil;
+        self.currentNode = nodeToAdd;
+        return true;
+    }
 }
 - (void) add:(id)object atLocation:(NSUInteger)location{
     
