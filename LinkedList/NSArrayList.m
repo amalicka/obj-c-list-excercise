@@ -195,7 +195,20 @@
 }
 
 - (BOOL) retainAll:(id<List>) objectList {
-    return false;
+    if (objectList == nil) {
+        @throw [NSException
+                exceptionWithName:NSInvalidArgumentException
+                reason:@"Passed nil objectList!"
+                userInfo:nil];
+    }
+    
+    NSUInteger prevSize = _array.count;
+    NSMutableArray *toRemove = [[NSMutableArray alloc] initWithArray:_array];
+    for (NSUInteger i = 0; i < [objectList size]; ++i) {
+        [toRemove removeObject:[objectList get:i]];
+    }
+    [_array removeObjectsInArray:toRemove];
+    return prevSize != _array.count;
 }
 
 - (id<List>) subListFromLocation:(NSUInteger) startLocation toLocation:(NSUInteger) endLocation {

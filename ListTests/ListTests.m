@@ -435,4 +435,65 @@
     XCTAssertEqualObjects(_str0, [_list get:1]);
 }
 
+- (void) testRetainAll {
+    XCTAssertThrowsSpecificNamed([_list retainAll:nil], NSException, NSInvalidArgumentException);
+    
+    id<List> emptyList = [[ListImpl alloc] init];
+    XCTAssertFalse([_list retainAll:emptyList]);
+    
+    id<List> otherList = [[ListImpl alloc] init];
+    [otherList add:@"Other object"];
+    [otherList add:@"another other object"];
+    [_list add:_str0];
+    [_list add:_str0];
+    XCTAssertTrue([_list retainAll:emptyList], @"All emements should be removed");
+    XCTAssertTrue([_list isEmpty], @"All elements are removed");
+    
+    [_list add:_str0];
+    [_list add:_str0];
+    [_list add:_str0];
+    [_list add:_str1];
+    [_list add:_str1];
+    
+    id<List> smallList = [[ListImpl alloc] init];
+    [smallList add:_str0];
+    [smallList add:_str0];
+    XCTAssertTrue([_list retainAll:smallList]);
+    XCTAssertEqual(3, [_list size]);
+    XCTAssertEqualObjects(_str0, [_list get:0]);
+    XCTAssertEqualObjects(_str0, [_list get:1]);
+    XCTAssertEqualObjects(_str0, [_list get:2]);
+    
+    [_list add:_str2];
+    [_list add:_str2];
+    
+    id<List> bigList = [[ListImpl alloc] init];
+    [bigList add:_str1];
+    [bigList add:_str1];
+    [bigList add:_str2];
+    [bigList add:_str2];
+    [bigList add:_str2];
+    XCTAssertTrue([_list retainAll:bigList]);
+    XCTAssertEqual(2, [_list size]);
+    XCTAssertEqualObjects(_str2, [_list get:0]);
+    XCTAssertEqualObjects(_str2, [_list get:1]);
+    
+    [_list add:_str0];
+    [_list add:_str1];
+    [_list add:_str2];
+    [_list add:_str2];
+    [_list add:_str1];
+    [_list add:_str0];
+    [_list add:_str1];
+    XCTAssertTrue([_list retainAll:bigList]);
+    XCTAssertEqual(7, [_list size]);
+    XCTAssertEqualObjects(_str2, [_list get:0]);
+    XCTAssertEqualObjects(_str2, [_list get:1]);
+    XCTAssertEqualObjects(_str1, [_list get:2]);
+    XCTAssertEqualObjects(_str2, [_list get:3]);
+    XCTAssertEqualObjects(_str2, [_list get:4]);
+    XCTAssertEqualObjects(_str1, [_list get:5]);
+    XCTAssertEqualObjects(_str1, [_list get:6]);
+}
+
 @end
