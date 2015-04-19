@@ -14,7 +14,7 @@
 #pragma mark ASList custommethods
 -(void)forward{
     if(self.currentNode == nil) {
-        @throw [NSException exceptionWithName:NSInvalidArgumentException reason:@"no currentNode object" userInfo:nil];
+        @throw [NSException exceptionWithName:NSInvalidArgumentException reason:@"fwd_No currentNode object" userInfo:nil];
     }
     if(self.currentNode.next == nil){
         return;
@@ -28,7 +28,7 @@
 }
 -(void)rewind{
     if(self.currentNode == nil) {
-        @throw [NSException exceptionWithName:NSInvalidArgumentException reason:@"no currentNode object" userInfo:nil];
+        @throw [NSException exceptionWithName:NSInvalidArgumentException reason:@"rewd_No currentNode object" userInfo:nil];
     }
     if(self.currentNode.prev == nil){
         return;
@@ -48,7 +48,7 @@
     
     if(object==nil){
         @throw [NSException exceptionWithName:NSInvalidArgumentException
-                                       reason:@"Added object is nil"
+                                       reason:@"as_Added object is nil"
                                      userInfo:nil];
     }
     else if(self.currentNode == nil){
@@ -69,6 +69,33 @@
     }
 }
 - (void) add:(id)object atLocation:(NSUInteger)location{
+    if(object==nil){
+        @throw [NSException exceptionWithName:NSInvalidArgumentException
+                                       reason:@"as_Added object is nil"
+                                     userInfo:nil];
+    }
+    if(location > [self size]){
+        @throw [NSException exceptionWithName:NSRangeException reason:@"as_Location out of list range" userInfo:nil];
+    }
+    if(location == [self size]){
+        NSInteger tmpSize = [self size];
+        [self add: object];
+    
+    }
+    else{
+        NSInteger tmpSize = [self size];
+        [self rewind];
+        NSInteger counter = 0;
+        while(counter!=location-1){
+            ++counter;
+            self.currentNode = self.currentNode.next;
+        }
+        LinkedNode *nodeToAdd = [[LinkedNode alloc]init];
+        nodeToAdd.object = object;
+        nodeToAdd.prev = self.currentNode;
+        nodeToAdd.next = self.currentNode.next;
+        self.currentNode.next = nodeToAdd;
+    }
     
 }
 - (BOOL) addAll:(id<List>) objectList{
@@ -80,17 +107,18 @@
 }
 
 - (NSUInteger) size{
-    NSInteger counter = 0;
+    NSUInteger counter = 0;
     if(self.currentNode == nil){
         return counter;
     }
     else{
-        [self forward]; //set currentNode for the last element of the list
+        [self rewind]; //set currentNode for the first element of the list
         counter = 1;
-        while(self.currentNode.prev !=nil){
+        while(self.currentNode.next !=nil){
             ++counter;
-            self.currentNode = self.currentNode.prev;
+            self.currentNode = self.currentNode.next;
         }
+        NSLog(@"Returning size: %ld", counter);
         return counter;
     }
 }
@@ -102,8 +130,8 @@
 }
 
 - (id) get:(NSUInteger) location{
-    if(location >= [self size]){
-        @throw [NSException exceptionWithName:NSRangeException reason:@"location out of list range" userInfo:nil];
+    if(location > [self size]){
+        @throw [NSException exceptionWithName:NSRangeException reason:@"get_location out of list range" userInfo:nil];
     }
     NSInteger counter = 0;
     [self rewind];
