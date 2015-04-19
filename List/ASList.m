@@ -13,6 +13,9 @@
 
 #pragma mark ASList custommethods
 -(void)forward{
+    if(self.currentNode == nil) {
+        @throw [NSException exceptionWithName:NSInvalidArgumentException reason:@"no currentNode object" userInfo:nil];
+    }
     if(self.currentNode.next == nil){
         return;
     }
@@ -24,6 +27,9 @@
     }
 }
 -(void)rewind{
+    if(self.currentNode == nil) {
+        @throw [NSException exceptionWithName:NSInvalidArgumentException reason:@"no currentNode object" userInfo:nil];
+    }
     if(self.currentNode.prev == nil){
         return;
     }
@@ -90,7 +96,10 @@
     }
 }
 - (BOOL) isEmpty{
-    return true;
+    if(self.currentNode ==nil){
+        return true;
+    }
+    else return false;
 }
 
 - (id) get:(NSUInteger) location{
