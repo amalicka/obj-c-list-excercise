@@ -166,34 +166,23 @@
 
 - (BOOL) contains:(id) object{
     
-    NSLog(@"SIZE: %ld", [self size]);
+    NSLog(@"contains %@", object);
     [self rewind];
     
-    //WYPISYWANIE********************************
     LinkedNode *copyOfCurrent = [[LinkedNode alloc]init];
-    copyOfCurrent = self.currentNode;
-    for(NSInteger i=0; i<[self size]; ++i){
-        NSLog(@"copyOfCurrent.object %@", copyOfCurrent.object);
-        if(copyOfCurrent.next != nil){
-            copyOfCurrent = copyOfCurrent.next;
-        }
-    }
-    //*******************************************
     
     if(object==nil){
         @throw [NSException exceptionWithName:NSInvalidArgumentException reason:@"contains_given object is a nil" userInfo:nil];
         return false;
     }
-    
-    while(self.currentNode.next != nil){
-        if([self.currentNode.object isEqualTo:object]){
-            NSLog(@"TEN SAM %@ != %@", object,self.currentNode.object);
+    copyOfCurrent = self.currentNode;
+    while(copyOfCurrent.next != nil){
+        if([copyOfCurrent.object isEqualTo:object]){
             return true;
         }
         else{
-            NSLog(@"INNY obiekt %@ != %@", object,self.currentNode.object);
-            if(self.currentNode.next !=nil){
-                self.currentNode = self.currentNode.next;
+            if(copyOfCurrent.next !=nil){
+                copyOfCurrent = copyOfCurrent.next;
             }
         }
     }
@@ -205,7 +194,35 @@
 }
 
 - (NSUInteger) locationOf:(id) object{
-    return 1;
+    NSLog(@"location of %@", object);
+    if(object==nil){
+        @throw [NSException exceptionWithName:NSInvalidArgumentException reason:@"contains_given object is a nil" userInfo:nil];
+        return NSNotFound;
+    }
+    
+    NSLog(@"contains %@", object);
+    [self rewind];
+    
+    LinkedNode *copyOfCurrent = [[LinkedNode alloc]init];
+    
+    if(object==nil){
+        @throw [NSException exceptionWithName:NSInvalidArgumentException reason:@"contains_given object is a nil" userInfo:nil];
+        return false;
+    }
+    NSUInteger counter =0;
+    copyOfCurrent = self.currentNode;
+    for(NSInteger i=0; i< [self size]; ++i){
+        if([copyOfCurrent.object isEqualTo:object]){
+            return counter;
+        }
+        else{
+            if(copyOfCurrent.next !=nil){
+                copyOfCurrent = copyOfCurrent.next;
+            }
+        }
+        ++counter;
+    }
+    return NSNotFound;
 }
 
 - (NSUInteger) lastLocationOf:(id) object{
