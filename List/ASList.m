@@ -14,21 +14,27 @@
 - (BOOL) add:(id)object{
     LinkedNode *nodeToAdd = [[LinkedNode alloc]init];
     nodeToAdd.object = object;
+    
     if(object==nil){
         @throw [NSException exceptionWithName:NSInvalidArgumentException
                                        reason:@"Added object is nil"
                                      userInfo:nil];
     }
-    else if(self.currentNode.object == nil){
+    else if(self.currentNode == nil){
         nodeToAdd.prev = nil;
         nodeToAdd.next = nil;
         self.currentNode = nodeToAdd;
+        NSLog(@"Added first. prev: %@, next: %@", nodeToAdd.prev, nodeToAdd.next);
         return  true;
     }
     else{
+        NSLog(@"self.currentNode %@",self.currentNode);
         nodeToAdd.prev = self.currentNode;
         nodeToAdd.next = nil;
+        self.currentNode.next = nodeToAdd;
         self.currentNode = nodeToAdd;
+        NSLog(@"Added. prev: %@, next: %@", nodeToAdd.prev, nodeToAdd.next);
+
         return true;
     }
 }
@@ -44,7 +50,20 @@
 }
 
 - (NSUInteger) size{
-    return 1;
+    NSInteger counter = 0;
+    if(self.currentNode == nil){
+        return counter;
+    }
+    else{
+        LinkedNode *tmpNode = self.currentNode;
+        counter = 1;
+        while(tmpNode.prev !=nil){
+            ++counter;
+            tmpNode = tmpNode.prev;
+        }
+        
+        return counter;
+    }
 }
 - (BOOL) isEmpty{
     return true;
