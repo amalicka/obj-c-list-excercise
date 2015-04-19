@@ -11,6 +11,31 @@
 
 @implementation ASList
 
+#pragma mark ASList custommethods
+-(void)forward{
+    if(self.currentNode.next == nil){
+        return;
+    }
+    else{
+        while(self.currentNode.next !=nil){
+            self.currentNode = self.currentNode.next;
+        }
+        return;
+    }
+}
+-(void)rewind{
+    if(self.currentNode.prev == nil){
+        return;
+    }
+    else{
+        while(self.currentNode.prev != nil){
+            self.currentNode = self.currentNode.prev;
+        }
+        return;
+    }
+}
+
+#pragma mark <List> methods
 - (BOOL) add:(id)object{
     LinkedNode *nodeToAdd = [[LinkedNode alloc]init];
     nodeToAdd.object = object;
@@ -55,13 +80,12 @@
         return counter;
     }
     else{
-        LinkedNode *tmpNode = self.currentNode;
+        [self forward]; //set currentNode for the last element of the list
         counter = 1;
-        while(tmpNode.prev !=nil){
+        while(self.currentNode.prev !=nil){
             ++counter;
-            tmpNode = tmpNode.prev;
+            self.currentNode = self.currentNode.prev;
         }
-        
         return counter;
     }
 }

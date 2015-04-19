@@ -13,4 +13,7 @@
 @interface ASList : NSObject <List>
 @property (nonatomic, strong) LinkedNode *currentNode;
 
+-(void)forward;
+-(void)rewind;
+
 @end
