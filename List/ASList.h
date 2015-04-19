@@ -11,6 +11,7 @@
 #import "LinkedNode.h"
 
 @interface ASList : NSObject <List>
+
 @property (nonatomic, strong) LinkedNode *currentNode;
 
 -(void)forward;
