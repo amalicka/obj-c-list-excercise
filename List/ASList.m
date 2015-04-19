@@ -194,21 +194,14 @@
 }
 
 - (NSUInteger) locationOf:(id) object{
-    NSLog(@"location of %@", object);
     if(object==nil){
-        @throw [NSException exceptionWithName:NSInvalidArgumentException reason:@"contains_given object is a nil" userInfo:nil];
-        return NSNotFound;
+        @throw [NSException
+                exceptionWithName:NSInvalidArgumentException
+                reason:@"contains_given object is a nil" userInfo:nil];
     }
-    
-    NSLog(@"contains %@", object);
     [self rewind];
     
     LinkedNode *copyOfCurrent = [[LinkedNode alloc]init];
-    
-    if(object==nil){
-        @throw [NSException exceptionWithName:NSInvalidArgumentException reason:@"contains_given object is a nil" userInfo:nil];
-        return false;
-    }
     NSUInteger counter =0;
     copyOfCurrent = self.currentNode;
     for(NSInteger i=0; i< [self size]; ++i){
@@ -226,7 +219,48 @@
 }
 
 - (NSUInteger) lastLocationOf:(id) object{
-    return 1;
+    NSLog(@"location of %@", object);
+    if(object==nil){
+        @throw [NSException
+                exceptionWithName:NSInvalidArgumentException
+                reason:@"contains_given object is a nil"
+                userInfo:nil];
+    }
+    [self rewind];
+    
+    LinkedNode *copyOfCurrent = [[LinkedNode alloc]init];
+    copyOfCurrent = self.currentNode;
+    
+    NSLog(@"SIZE: %ld:", [self size]);
+    for(NSInteger i=0; i< [self size]; ++i){
+        NSLog(@"object %ld: %@", i, copyOfCurrent.object);
+        copyOfCurrent = copyOfCurrent.next;
+    }
+    
+    NSUInteger counter =0;
+    NSUInteger lastOccurenceLocation = NSNotFound;
+    copyOfCurrent = self.currentNode;
+    for(NSInteger i=0; i< [self size]; ++i){
+        NSLog(@"OBJECT: %@ current %ld: %@",object, i, copyOfCurrent.object);
+        if([copyOfCurrent.object isEqualTo:object]){
+            lastOccurenceLocation = counter;
+            if(copyOfCurrent.next !=nil){
+                copyOfCurrent = copyOfCurrent.next;
+            }
+        }
+        else{
+            if(copyOfCurrent.next !=nil){
+                copyOfCurrent = copyOfCurrent.next;
+            }
+        }
+        ++counter;
+    }
+    if(lastOccurenceLocation!=NSNotFound){
+        return lastOccurenceLocation;
+    }
+    else{
+        return NSNotFound;
+    }
 }
 
 - (void) clear{

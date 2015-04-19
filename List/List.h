@@ -107,7 +107,7 @@
 /**
  * Searches this List for the specified object and returns the index of the last occurrence.
  * @param object the object to search for
- * @returns the index of the last occurrence of the object, or -1 if the object was not found.
+ * @returns the index of the last occurrence of the object, or NSNotFound if the object was not found.
  * @throws NSInvalidArgumentException if object is nil
  */
 - (NSUInteger) lastLocationOf:(id) object;
