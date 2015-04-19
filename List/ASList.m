@@ -130,7 +130,7 @@
 }
 
 - (id) get:(NSUInteger) location{
-    if(location > [self size]){
+    if(location >= [self size] || [self isEmpty]){
         @throw [NSException exceptionWithName:NSRangeException reason:@"get_location out of list range" userInfo:nil];
     }
     NSInteger counter = 0;
