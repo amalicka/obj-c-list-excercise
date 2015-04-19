@@ -80,11 +80,18 @@
     if(location == [self size]){
         NSInteger tmpSize = [self size];
         [self add: object];
-    
     }
     else{
         NSInteger tmpSize = [self size];
         [self rewind];
+        if(location == 0){
+            LinkedNode *nodeToAdd = [[LinkedNode alloc]init];
+            nodeToAdd.object = object;
+            nodeToAdd.prev = nil;
+            nodeToAdd.next = self.currentNode;
+            self.currentNode.prev = nodeToAdd;
+            return;
+        }
         NSInteger counter = 0;
         while(counter!=location-1){
             ++counter;

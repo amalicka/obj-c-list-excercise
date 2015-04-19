@@ -182,7 +182,7 @@
     XCTAssertEqualObjects(_str1, [_list get:4]);
     XCTAssertEqualObjects(_str0, [_list get:5]);
     XCTAssertEqualObjects(_str1, [_list get:6]);
-    
+
     // Add at the end
     [_list add:_str2 atLocation: 7];
     XCTAssertEqual(8, [_list size]);
@@ -194,7 +194,7 @@
     XCTAssertEqualObjects(_str0, [_list get:5]);
     XCTAssertEqualObjects(_str1, [_list get:6]);
     XCTAssertEqualObjects(_str2, [_list get:7]);
-    
+
     // Add at the beginning
     [_list add:_str2 atLocation:0];
     XCTAssertEqual(9, [_list size]);
