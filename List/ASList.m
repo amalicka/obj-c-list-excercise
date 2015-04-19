@@ -11,36 +11,38 @@
 
 @implementation ASList
 
+@synthesize currentNode = _currentNode;
+
 #pragma mark ASList custommethods
 -(void)forward{
-    if(self.currentNode == nil) {
+    if(_currentNode == nil) {
         @throw [NSException exceptionWithName:NSInvalidArgumentException reason:@"fwd_No currentNode object" userInfo:nil];
         return;
     }
-    if(self.currentNode.next == nil){
+    if(_currentNode.next == nil){
         return;
     }
     else{
-        while(self.currentNode.next !=nil){
-            self.currentNode = self.currentNode.next;
+        while(_currentNode.next !=nil){
+            _currentNode = _currentNode.next;
         }
         return;
     }
 }
 -(void)rewind{
-//    while(self.currentNode.prev != nil){
-//        self.currentNode = self.currentNode.prev;
+//    while(_currentNode.prev != nil){
+//        _currentNode = _currentNode.prev;
 //    }
-    if(self.currentNode == nil) {
+    if(_currentNode == nil) {
         @throw [NSException exceptionWithName:NSInvalidArgumentException reason:@"rewd_No currentNode object" userInfo:nil];
         return;
     }
-    if(self.currentNode.prev == nil){
+    if(_currentNode.prev == nil){
         return;
     }
     else{
-        while(self.currentNode.prev != nil){
-            self.currentNode = self.currentNode.prev;
+        while(_currentNode.prev != nil){
+            _currentNode = _currentNode.prev;
         }
         return;
     }
@@ -55,23 +57,23 @@
         @throw [NSException exceptionWithName:NSInvalidArgumentException
                                        reason:@"as_Added object is nil"
                                      userInfo:nil];
-        return false;
+        return NO;
     }
-    else if(self.currentNode == nil){
+    else if(_currentNode == nil){
         nodeToAdd.prev = nil;
         nodeToAdd.next = nil;
-        self.currentNode = nodeToAdd;
-        NSLog(@"Added object %@", self.currentNode.object);
-        return  true;
+        _currentNode = nodeToAdd;
+        NSLog(@"Added object %@", _currentNode.object);
+        return  YES;
     }
     else{
-        nodeToAdd.prev = self.currentNode;
+        nodeToAdd.prev = _currentNode;
         nodeToAdd.next = nil;
-        self.currentNode.next = nodeToAdd;
-        self.currentNode = nodeToAdd;
-        NSLog(@"Added object %@", self.currentNode.object);
+        _currentNode.next = nodeToAdd;
+        _currentNode = nodeToAdd;
+        NSLog(@"Added object %@", _currentNode.object);
 
-        return true;
+        return YES;
     }
 }
 - (void) add:(id)object atLocation:(NSUInteger)location{
@@ -94,35 +96,35 @@
             LinkedNode *nodeToAdd = [[LinkedNode alloc]init];
             nodeToAdd.object = object;
             nodeToAdd.prev = nil;
-            nodeToAdd.next = self.currentNode;
-            self.currentNode.prev = nodeToAdd;
+            nodeToAdd.next = _currentNode;
+            _currentNode.prev = nodeToAdd;
             return;
         }
         NSInteger counter = 0;
         while(counter!=location-1){
             ++counter;
-            self.currentNode = self.currentNode.next;
+            _currentNode = _currentNode.next;
         }
         LinkedNode *nodeToAdd = [[LinkedNode alloc]init];
         nodeToAdd.object = object;
-        nodeToAdd.prev = self.currentNode;
-        nodeToAdd.next = self.currentNode.next;
-        self.currentNode.next = nodeToAdd;
+        nodeToAdd.prev = _currentNode;
+        nodeToAdd.next = _currentNode.next;
+        _currentNode.next = nodeToAdd;
     }
     
 }
 - (BOOL) addAll:(id<List>) objectList{
-    return true;
+    return YES;
 }
 
 - (BOOL) addAll:(id<List>) objectList atLocation:(NSUInteger) location{
-    return true;
+    return YES;
 }
 
 - (NSUInteger) size{
     NSUInteger counter = 0;
     LinkedNode *copyOfCurrent = [[LinkedNode alloc]init];
-    copyOfCurrent = self.currentNode;
+    copyOfCurrent = _currentNode;
     if(copyOfCurrent == nil){
         return counter;
     }
@@ -141,9 +143,9 @@
 }
 - (BOOL) isEmpty{
     if([self size]==0){
-        return true;
+        return YES;
     }
-    else return false;
+    else return NO;
 }
 
 - (id) get:(NSUInteger) location{
@@ -153,10 +155,10 @@
     NSInteger counter = 0;
     [self rewind];
     while(counter != location){
-        self.currentNode = self.currentNode.next;
+        _currentNode = _currentNode.next;
         counter++;
     }
-    return self.currentNode.object;
+    return _currentNode.object;
     
     return nil;
 }
@@ -173,12 +175,12 @@
     
     if(object==nil){
         @throw [NSException exceptionWithName:NSInvalidArgumentException reason:@"contains_given object is a nil" userInfo:nil];
-        return false;
+        return NO;
     }
-    copyOfCurrent = self.currentNode;
+    copyOfCurrent = _currentNode;
     while(copyOfCurrent.next != nil){
         if([copyOfCurrent.object isEqualTo:object]){
-            return true;
+            return YES;
         }
         else{
             if(copyOfCurrent.next !=nil){
@@ -186,11 +188,11 @@
             }
         }
     }
-    return false;
+    return NO;
 }
 
 - (BOOL) containsAll:(id<List>) objectList{
-    return true;
+    return YES;
 }
 
 - (NSUInteger) locationOf:(id) object{
@@ -203,7 +205,7 @@
     
     LinkedNode *copyOfCurrent = [[LinkedNode alloc]init];
     NSUInteger counter =0;
-    copyOfCurrent = self.currentNode;
+    copyOfCurrent = _currentNode;
     for(NSInteger i=0; i< [self size]; ++i){
         if([copyOfCurrent.object isEqualTo:object]){
             return counter;
@@ -229,19 +231,17 @@
     [self rewind];
     
     LinkedNode *copyOfCurrent = [[LinkedNode alloc]init];
-    copyOfCurrent = self.currentNode;
+    copyOfCurrent = _currentNode;
     
-    NSLog(@"SIZE: %ld:", [self size]);
-    for(NSInteger i=0; i< [self size]; ++i){
-        NSLog(@"object %ld: %@", i, copyOfCurrent.object);
-        copyOfCurrent = copyOfCurrent.next;
-    }
+//    for(NSInteger i=0; i< [self size]; ++i){
+//        NSLog(@"object %ld: %@", i, copyOfCurrent.object);
+//        copyOfCurrent = copyOfCurrent.next;
+//    }
     
     NSUInteger counter =0;
     NSUInteger lastOccurenceLocation = NSNotFound;
-    copyOfCurrent = self.currentNode;
+    copyOfCurrent = _currentNode;
     for(NSInteger i=0; i< [self size]; ++i){
-        NSLog(@"OBJECT: %@ current %ld: %@",object, i, copyOfCurrent.object);
         if([copyOfCurrent.object isEqualTo:object]){
             lastOccurenceLocation = counter;
             if(copyOfCurrent.next !=nil){
@@ -264,19 +264,19 @@
 }
 
 - (void) clear{
-    if(self.currentNode == nil){
+    if(_currentNode == nil){
         return;
     }
     [self forward];
     while([self size]!=1){
-        self.currentNode = self.currentNode.prev;
-        self.currentNode.next = nil;
+        _currentNode = _currentNode.prev;
+        _currentNode.next = nil;
     }
-    self.currentNode=nil;
+    _currentNode=nil;
 }
 
 - (BOOL) remove:(id) object{
-    return true;
+    return YES;
 }
 
 - (id) removeAtLocation:(NSUInteger) location{
@@ -284,11 +284,11 @@
 }
 
 - (BOOL) removeAll:(id<List>) objectList{
-    return true;
+    return YES;
 }
 
 - (BOOL) retainAll:(id<List>) objectList{
-    return true;
+    return YES;
 }
 
 - (id<List>) subListFromLocation:(NSUInteger) startLocation toLocation:(NSUInteger) endLocation{
@@ -300,7 +300,7 @@
 }
 
 - (BOOL) isEqual:(id)other{
-    return true;
+    return YES;
 }
 - (NSUInteger) hash{
     return 1;
