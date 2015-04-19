@@ -55,16 +55,15 @@
         nodeToAdd.prev = nil;
         nodeToAdd.next = nil;
         self.currentNode = nodeToAdd;
-        NSLog(@"Added first. prev: %@, next: %@", nodeToAdd.prev, nodeToAdd.next);
+        //NSLog(@"Added first. prev: %@, next: %@", nodeToAdd.prev, nodeToAdd.next);
         return  true;
     }
     else{
-        NSLog(@"self.currentNode %@",self.currentNode);
         nodeToAdd.prev = self.currentNode;
         nodeToAdd.next = nil;
         self.currentNode.next = nodeToAdd;
         self.currentNode = nodeToAdd;
-        NSLog(@"Added. prev: %@, next: %@", nodeToAdd.prev, nodeToAdd.next);
+        //NSLog(@"Added. prev: %@, next: %@", nodeToAdd.prev, nodeToAdd.next);
 
         return true;
     }
@@ -96,13 +95,24 @@
     }
 }
 - (BOOL) isEmpty{
-    if(self.currentNode ==nil){
+    if([self size]==0){
         return true;
     }
     else return false;
 }
 
 - (id) get:(NSUInteger) location{
+    if(location >= [self size]){
+        @throw [NSException exceptionWithName:NSRangeException reason:@"location out of list range" userInfo:nil];
+    }
+    NSInteger counter = 0;
+    [self rewind];
+    while(counter != location){
+        self.currentNode = self.currentNode.next;
+        counter++;
+    }
+    return self.currentNode.object;
+    
     return nil;
 }
 - (id) set:(id) object atLocation:(NSUInteger) location{
@@ -126,7 +136,15 @@
 }
 
 - (void) clear{
-    
+    if(self.currentNode == nil){
+        return;
+    }
+    [self forward];
+    while([self size]!=1){
+        self.currentNode = self.currentNode.prev;
+        self.currentNode.next = nil;
+    }
+    self.currentNode=nil;
 }
 
 - (BOOL) remove:(id) object{
